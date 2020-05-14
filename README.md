@@ -1,2 +1,2 @@
 # PowerShell
-PowerShell scripts and documentation
+A place for the PowerShell scripts and documentation that I utilize regularly
