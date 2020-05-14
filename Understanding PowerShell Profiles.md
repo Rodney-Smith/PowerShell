@@ -31,10 +31,10 @@ in the specified location. Typically, you will use the user-specific, shell-spec
 user profile. The location of this profile is stored in the $profile variable.
 
 To display the path to the Windows PowerShell profile, type:
-'$profile'
+`$profile`
 or
-'$profile | Select-Object -Property AllUsersAllHosts,AllUsersCurrentHost,CurrentUserAllHosts,CurrentUserCurrentHost | Format-List'
+`$profile | Select-Object -Property AllUsersAllHosts,AllUsersCurrentHost,CurrentUserAllHosts,CurrentUserCurrentHost | Format-List`
 
 To determine whether a Windows PowerShell profile has been created on the system, type:
-'test-path $profile'
+`test-path $profile`
 If the profile exists, the response is True; otherwise, it is False.
