@@ -28,22 +28,19 @@ For more information, please refer to <http://unlicense.org>                    
 .NAME
     Get-ActiveHosts.ps1
 .SYNOPSIS
-    This is a script to loop through a .csv of hosts with IP addresses 
-    to find all active hosts.
-    Gather information about target computer.  (Including Current Date/Time, BIOS, 
-    SystemInfo, Environment Variables, IP Address, ARP Table, Network Shares, 
-    Running Processes, Scheduled Tasks.
+    This is a script to loop through a .csv of hosts and IP addresses to find all 
+    active hosts.
 .DESCRIPTION
     This uses a WMI wrapper function to get information from a target computer system.  
     The PowerShell script requires two directories be created on the target drive 
     (Case_Data and Tools).  This script and FDPro.exe should be placed in the Tools 
     directory along with any other command line tools you would like to execute.
 .SYNTAX
-    .\Get-SystemInfo.ps1 (drive letter:)
-.PARAMETER TargetDrive
-    The drive letter where you want the report to be stored.
+    .\Get-ActiveHosts.ps1
+.PARAMETER 
+    Non at this time.
 .EXAMPLE
-    \Get-SystemInfo.ps1 E:
+    \Get-ActiveHosts.ps1
 .Notes 
   Author: Rodney Smith  
  Version: 1.1
