@@ -1,2 +1,13 @@
-# ignore all log files
+# ignore all files
 *.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*~.nib
+
+## Windows specific files
+# Windows image file caches
+Thumbs.db
+# Folder config file
+Desktop.ini
