@@ -39,6 +39,7 @@ To determine whether a Windows PowerShell profile has been created on the system
 `test-path $profile`
 If the profile exists, the response is True; otherwise, it is False.
 
+
 # Profiles in Windows PowerShell ISE
 
 https://docs.microsoft.com/en-us/powershell/scripting/components/ise/how-to-use-profiles-in-windows-powershell-ise?view=powershell-7
@@ -57,3 +58,37 @@ Current user, PowerShell ISE | `$PROFILE.CurrentUserCurrentHost`, or `$PROFILE`
 All users, PowerShell ISE | `$PROFILE.AllUsersCurrentHost`
 Current user, All hosts | `$PROFILE.CurrentUserAllHosts`
 All users, All hosts | `$PROFILE.AllUsersAllHosts`
+
+## To create a new profile
+
+To create a new “Current user, Windows PowerShell ISE” profile, run this command:
+
+`if (!(Test-Path -Path $PROFILE ))
+{ New-Item -Type File -Path $PROFILE -Force }`
+
+To create a new “All users, Windows PowerShell ISE” profile, run this command:
+
+`if (!(Test-Path -Path $PROFILE.AllUsersCurrentHost))
+{ New-Item -Type File -Path $PROFILE.AllUsersCurrentHost -Force }`
+
+To create a new “Current user, All Hosts” profile, run this command:
+
+`if (!(Test-Path -Path $PROFILE.CurrentUserAllHosts))
+{ New-Item -Type File -Path $PROFILE.CurrentUserAllHosts -Force }`
+
+To create a new “All users, All Hosts” profile, type:
+
+`if (!(Test-Path -Path $PROFILE.AllUsersAllHosts))
+{ New-Item -Type File -Path $PROFILE.AllUsersAllHosts -Force }`
+
+## To edit a profile
+
+..1 To open the profile, run the command psEdit with the variable that specifies the profile you want to edit. For example, to open the “Current user, Windows PowerShell ISE” profile, type: psEdit $PROFILE
+
+..2 Add some items to your profile. The following are a few examples to get you started:
+
+....+To change the default background color of the Console Pane to blue, in the profile file type: $psISE.Options.OutputPaneBackground = 'blue' . For more information about the $psISE variable, see Windows PowerShell ISE Object Model Reference.
+
+....+To change font size to 20, in the profile file type: $psISE.Options.FontSize =20
+
+..3To save your profile file, on the File menu, click Save. Next time you open the Windows PowerShell ISE, your customizations are applied.
