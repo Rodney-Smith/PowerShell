@@ -66,22 +66,26 @@ All users, All hosts | `$PROFILE.AllUsersAllHosts`
 To create a new “Current user, Windows PowerShell ISE” profile, run this command:
 ```PowerShell
 if (!(Test-Path -Path $PROFILE ))
-{ New-Item -Type File -Path $PROFILE -Force }```
+{ New-Item -Type File -Path $PROFILE -Force }
+```
 
 To create a new “All users, Windows PowerShell ISE” profile, run this command:
 ```PowerShell
 if (!(Test-Path -Path $PROFILE.AllUsersCurrentHost))
-{ New-Item -Type File -Path $PROFILE.AllUsersCurrentHost -Force }```
+{ New-Item -Type File -Path $PROFILE.AllUsersCurrentHost -Force }
+```
 
 To create a new “Current user, All Hosts” profile, run this command:
 ```PowerShell
 if (!(Test-Path -Path $PROFILE.CurrentUserAllHosts))
-{ New-Item -Type File -Path $PROFILE.CurrentUserAllHosts -Force }```
+{ New-Item -Type File -Path $PROFILE.CurrentUserAllHosts -Force }
+```
 
 To create a new “All users, All Hosts” profile, type:
 ```PowerShell
 if (!(Test-Path -Path $PROFILE.AllUsersAllHosts))
-{ New-Item -Type File -Path $PROFILE.AllUsersAllHosts -Force }```
+{ New-Item -Type File -Path $PROFILE.AllUsersAllHosts -Force }
+```
 
 ## To edit a profile
 
@@ -105,7 +109,8 @@ Here are a few suggestions to get you started.
 
 This is especially useful if you use a profile other than the "Current User, Current Host" profile. For example, add the following command:
 ```PowerShell
-function Pro {notepad $PROFILE.CurrentUserAllHosts}```
+function Pro {notepad $PROFILE.CurrentUserAllHosts}
+```
 
 ### Add a function that lists the aliases for any cmdlet
 ```PowerShell
@@ -113,7 +118,8 @@ function Get-CmdletAlias ($cmdletname) {
   Get-Alias |
     Where-Object -FilterScript {$_.Definition -like "$cmdletname"} |
       Format-Table -Property Definition, Name -AutoSize
-}```
+}
+```
 
 ### Customize your console
 ```PowerShell
@@ -125,13 +131,15 @@ function Color-Console {
   $Host.UI.RawUI.WindowTitle = "PowerShell $hostversion ($hosttime)"
   Clear-Host
 }
-Color-Console```
+Color-Console
+```
 
 ### Add a customized PowerShell prompt
 ```PowerShell
 function Prompt
 {
 $env:COMPUTERNAME + "\" + (Get-Location) + "> "
-}```
+}
+```
 
 For more information about the PowerShell prompt, see about_Prompts.
