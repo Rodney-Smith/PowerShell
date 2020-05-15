@@ -31,12 +31,15 @@ in the specified location. Typically, you will use the user-specific, shell-spec
 user profile. The location of this profile is stored in the $profile variable.
 
 To display the path to the Windows PowerShell profile, type:
-`$profile`
+```PowerShell
+$profile```
 or
-`$profile | Select-Object -Property AllUsersAllHosts,AllUsersCurrentHost,CurrentUserAllHosts,CurrentUserCurrentHost | Format-List`
+```PowerShell
+$profile | Select-Object -Property AllUsersAllHosts,AllUsersCurrentHost,CurrentUserAllHosts,CurrentUserCurrentHost | Format-List```
 
 To determine whether a Windows PowerShell profile has been created on the system, type:
-`test-path $profile`
+```PowerShell
+test-path $profile```
 If the profile exists, the response is True; otherwise, it is False.
 
 
@@ -62,24 +65,24 @@ All users, All hosts | `$PROFILE.AllUsersAllHosts`
 ## To create a new profile
 
 To create a new “Current user, Windows PowerShell ISE” profile, run this command:
-
-`if (!(Test-Path -Path $PROFILE ))
-{ New-Item -Type File -Path $PROFILE -Force }`
+```PowerShell
+if (!(Test-Path -Path $PROFILE ))
+{ New-Item -Type File -Path $PROFILE -Force }```
 
 To create a new “All users, Windows PowerShell ISE” profile, run this command:
-
-`if (!(Test-Path -Path $PROFILE.AllUsersCurrentHost))
-{ New-Item -Type File -Path $PROFILE.AllUsersCurrentHost -Force }`
+```PowerShell
+if (!(Test-Path -Path $PROFILE.AllUsersCurrentHost))
+{ New-Item -Type File -Path $PROFILE.AllUsersCurrentHost -Force }```
 
 To create a new “Current user, All Hosts” profile, run this command:
-
-`if (!(Test-Path -Path $PROFILE.CurrentUserAllHosts))
-{ New-Item -Type File -Path $PROFILE.CurrentUserAllHosts -Force }`
+```PowerShell
+if (!(Test-Path -Path $PROFILE.CurrentUserAllHosts))
+{ New-Item -Type File -Path $PROFILE.CurrentUserAllHosts -Force }```
 
 To create a new “All users, All Hosts” profile, type:
-
-`if (!(Test-Path -Path $PROFILE.AllUsersAllHosts))
-{ New-Item -Type File -Path $PROFILE.AllUsersAllHosts -Force }`
+```PowerShell
+if (!(Test-Path -Path $PROFILE.AllUsersAllHosts))
+{ New-Item -Type File -Path $PROFILE.AllUsersAllHosts -Force }```
 
 ## To edit a profile
 
@@ -87,8 +90,49 @@ To create a new “All users, All Hosts” profile, type:
 
 2. Add some items to your profile. The following are a few examples to get you started:
 
-     * To change the default background color of the Console Pane to blue, in the profile file type: $psISE.Options.OutputPaneBackground = 'blue' . For more information about the $psISE variable, see Windows PowerShell ISE Object Model Reference.
+     * To change the default background color of the Console Pane to blue, in the profile file type: `$psISE.Options.OutputPaneBackground = 'blue'` . For more information about the `$psISE` variable, see Windows PowerShell ISE Object Model Reference.
 
-     * To change font size to 20, in the profile file type: $psISE.Options.FontSize =20
+     * To change font size to 20, in the profile file type: `$psISE.Options.FontSize =20`
 
 3. To save your profile file, on the File menu, click Save. Next time you open the Windows PowerShell ISE, your customizations are applied.
+
+## How to start a profile
+
+When you open the profile file, it is blank. However, you can fill it with the variables, aliases, and commands that you use frequently.
+
+Here are a few suggestions to get you started.
+
+### Add commands that make it easy to open your profile
+
+This is especially useful if you use a profile other than the "Current User, Current Host" profile. For example, add the following command:
+```PowerShell
+function Pro {notepad $PROFILE.CurrentUserAllHosts}```
+
+### Add a function that lists the aliases for any cmdlet
+```PowerShell
+function Get-CmdletAlias ($cmdletname) {
+  Get-Alias |
+    Where-Object -FilterScript {$_.Definition -like "$cmdletname"} |
+      Format-Table -Property Definition, Name -AutoSize
+}```
+
+### Customize your console
+```PowerShell
+function Color-Console {
+  $Host.ui.rawui.backgroundcolor = "white"
+  $Host.ui.rawui.foregroundcolor = "black"
+  $hosttime = (Get-ChildItem -Path $PSHOME\PowerShell.exe).CreationTime
+  $hostversion="$($Host.Version.Major) `.$($Host.Version.Minor)"
+  $Host.UI.RawUI.WindowTitle = "PowerShell $hostversion ($hosttime)"
+  Clear-Host
+}
+Color-Console```
+
+### Add a customized PowerShell prompt
+```PowerShell
+function Prompt
+{
+$env:COMPUTERNAME + "\" + (Get-Location) + "> "
+}```
+
+For more information about the PowerShell prompt, see about_Prompts.
