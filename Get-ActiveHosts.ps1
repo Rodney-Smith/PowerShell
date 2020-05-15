@@ -31,10 +31,8 @@ For more information, please refer to <http://unlicense.org>                    
     This is a script to loop through a .csv of hosts and IP addresses to find all 
     active hosts.
 .DESCRIPTION
-    This uses a WMI wrapper function to get information from a target computer system.  
-    The PowerShell script requires two directories be created on the target drive 
-    (Case_Data and Tools).  This script and FDPro.exe should be placed in the Tools 
-    directory along with any other command line tools you would like to execute.
+    This script uses a CSV input file containing Name, Type, Data, Comment, Site 
+    columns to check if the systems are still active.
 .SYNTAX
     .\Get-ActiveHosts.ps1
 .PARAMETER 
@@ -51,7 +49,7 @@ Requires -Version 3.0
 
 # Get Shell Folder value for Downloads of the Current User
   $key = "Registry::HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
-$value = "{374DE290-123F-4565-9164-39C4925E467B}"
+$value = "{374DE290-123F-4565-9164-39C4925E467B}" # Download Folder Location
  $path = (Get-ItemProperty -Path $key -Name $value).$value
 
 #Read the hosts information from the .csv file
@@ -61,7 +59,6 @@ $_env = Import-Csv $path\ResourceRecords.csv
  $outputCSV = @()
 $Confluence = @()
    $siteURL = @()
-#       $env = $_env | Where-Object {$_.Name -ne $env:COMPUTERNAME}
       $name = $_env.Name
       $type = $_env.Type
       $data = $_env.Data
