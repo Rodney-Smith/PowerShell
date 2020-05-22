@@ -1,13 +1,60 @@
-# ignore all files
-*.log
+# Compiled Python files
+*.pyc
+
+# Folder configuration files
+*~
+.DS_Store
+Desktop.ini
+
+# Thumbnail cache files
+._*
+Thumbs.db
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+
+# Private Information
+.private
+.gitconfig
+
+# git
+*.patch
+
+# npm
+npm-debug.log
+
+# VIM
+*.un~
+Session.vim
+.netrwhist
+*.swp
+.lvimrc
+
+# VS Code
+.vscode/
+# localhistory
+.history
+
+# Over-arching stuff
+*.ignored/
+*.ignored.*
 *.tmp
 *.bak
-*.swp
 *.swo
 *~.nib
+# Directories
+/build/
+/deploy/
+/tmp/
 
-## Windows specific files
-# Windows image file caches
-Thumbs.db
-# Folder config file
-Desktop.ini
+# eslint
+.eslintcache
+
+# Log Files
+*.log
+*.stackdump
+
+# Angular Files
+angular.js.tmproj
+angular.xcodeproj
