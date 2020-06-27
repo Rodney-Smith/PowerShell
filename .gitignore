@@ -1,6 +1,3 @@
-# Compiled Python files
-*.pyc
-
 # Folder configuration files
 *~
 .DS_Store
@@ -20,6 +17,9 @@ Thumbs.db
 
 # git
 *.patch
+
+# Compiled Python files
+*.pyc
 
 # npm
 npm-debug.log
