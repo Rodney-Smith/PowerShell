@@ -143,3 +143,32 @@ $env:COMPUTERNAME + "\" + (Get-Location) + "> "
 ```
 
 For more information about the PowerShell prompt, see about_Prompts.
+
+
+# PowerShell remoting over SSH
+##Set up on a macOS computer
+
+  Install the latest version of PowerShell, 'brew cask install PowerShell'.
+
+  Make sure SSH Remoting is enabled by following these steps:
+      Open System Preferences.
+      Click on Sharing.
+      Check Remote Login to set Remote Login: On.
+      Allow access to the appropriate users.
+
+  Edit the sshd_config file at location /private/etc/ssh/sshd_config.
+
+  Use a text editor such as nano:
+    sudo nano /private/etc/ssh/sshd_config
+
+  Make sure password authentication is enabled:
+    PasswordAuthentication yes
+  Optionally, enable key authentication:
+    PubkeyAuthentication yes
+
+  Add a PowerShell subsystem entry:
+    Subsystem powershell /usr/local/bin/pwsh -sshs -NoLogo
+
+  Restart the sshd service.
+    sudo launchctl stop com.openssh.sshd
+    sudo launchctl start com.openssh.sshd
